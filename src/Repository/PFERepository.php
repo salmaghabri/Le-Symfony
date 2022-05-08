@@ -75,4 +75,16 @@ class PFERepository extends ServiceEntityRepository
         ;
     }
     */
+    public function stats($entreprise)
+    {
+        return $this->createQueryBuilder('p')
+        ->select('count(p.entreprise) as total')
+        ->andWhere('p.entreprise=:val')
+        ->setParameters(['val'=> $entreprise])
+        ->getQuery()
+        ->getSingleScalarResult()
+    ;
+        
+    }
+   
 }

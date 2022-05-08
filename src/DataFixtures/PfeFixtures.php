@@ -12,15 +12,17 @@ class PfeFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
-        for($i = 0 ; $i< 50 ; $i++) {
-            $repo = $manager->getRepository(\App\Entity\Entreprise::class);
-            $entreprise =$repo->find($i);
-            $pfe = new PFE();
+        $repo = $manager->getRepository(\App\Entity\Entreprise::class);
+       $entreprises=$repo->findAll();
 
+        for($i = 1 ; $i< 20 ; $i++) {
+            $pfe = new PFE();
+            $num=rand(0,sizeof($entreprises));
             $pfe->setStudent($faker->name);
             $pfe->setTitle("PFE " . $i);
-            $pfe->setEntreprise($entreprise);
+            $pfe->setEntreprise($entreprises[$num]);
             $manager->persist($pfe);
+
         }
         $manager->flush();
 
