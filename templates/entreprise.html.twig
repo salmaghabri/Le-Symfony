@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="row">
+{% for entreprise, nbPfe in entreprises %}
+
+<div class="col-sm-3">
+<div class="card text-white " style="width: 18rem; background-color: {% if loop.index%2 ==0 %}
+    cyan
+    {% else %}
+    peru
+{% endif %}">
+<div class="card-header">{{entreprise}}</div>
+  <div class="card-body">
+    <p class="card-text">{{nbPfe}} pfe(s)</p>
+  </div>
+</div>
+</div>
+
+
+
+{% endfor %}
+</div>
+
+{% endblock %}
